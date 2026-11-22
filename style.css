@@ -94,7 +94,7 @@ footer .lm{background:#fff;width:50px;height:50px}
 @keyframes mq{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pg{from{width:0}to{width:100%}}
 @keyframes bl{to{transform:translate(40px,30px) scale(1.2)}}@keyframes pl{50%{transform:scale(1.08)}}
 @keyframes orb{from{transform:rotate(var(--a)) translateX(105px) rotate(calc(var(--a)*-1))}to{transform:rotate(calc(var(--a) + 360deg)) translateX(105px) rotate(calc((var(--a) + 360deg)*-1))}}
-body{animation:fu .5s both}:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+body{animation:fo .5s both}@keyframes fo{from{opacity:0}to{opacity:1}}:focus-visible{outline:2px solid var(--b);outline-offset:2px}
 .cr{animation:fl 7s ease-in-out infinite}.fc{animation:fl 5s ease-in-out infinite reverse}
 .hc>div>*{animation:fu .7s both}.hc>div>:nth-child(2){animation-delay:.1s}.hc>div>:nth-child(3){animation-delay:.2s}.hc>div>:nth-child(4){animation-delay:.3s}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .25s}.rv.in{opacity:1;transform:none}.card.rv.in:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(20,22,58,.16)}
