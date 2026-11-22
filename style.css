@@ -88,3 +88,40 @@ footer .lm{background:#fff;width:50px;height:50px}
 .faq details[open] summary{color:var(--b)}
 @media(max-width:900px){.bb,.pl{grid-template-columns:1fr;padding:32px 20px}.bb{padding:32px 20px}}
 .lg{height:40px;width:auto}
+/* animations */
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fl{50%{transform:translateY(-12px)}}@keyframes pop{from{opacity:0;transform:scale(0) rotate(-40deg)}to{opacity:1;transform:none}}
+@keyframes mq{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pg{from{width:0}to{width:100%}}
+@keyframes bl{to{transform:translate(40px,30px) scale(1.2)}}@keyframes pl{50%{transform:scale(1.08)}}
+@keyframes orb{from{transform:rotate(var(--a)) translateX(105px) rotate(calc(var(--a)*-1))}to{transform:rotate(calc(var(--a) + 360deg)) translateX(105px) rotate(calc((var(--a) + 360deg)*-1))}}
+body{animation:fu .5s both}:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+.cr{animation:fl 7s ease-in-out infinite}.fc{animation:fl 5s ease-in-out infinite reverse}
+.hc>div>*{animation:fu .7s both}.hc>div>:nth-child(2){animation-delay:.1s}.hc>div>:nth-child(3){animation-delay:.2s}.hc>div>:nth-child(4){animation-delay:.3s}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .25s}.rv.in{opacity:1;transform:none}.card.rv.in:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(20,22,58,.16)}
+.bf,.bo,.cc,.tile,.nc,.of{transition:transform .25s,box-shadow .25s,filter .25s,background .25s,color .25s}.bf:hover,.bo:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(61,90,241,.28)}
+.cc.in:hover,.tile.in:hover,.nc.in:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(20,22,58,.14)}
+.cc .i,.tile .i,.av .i{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}.cc:hover .i,.tile:hover .i,.card:hover .av .i{transform:translateY(-4px) scale(1.12) rotate(-5deg)}
+.nv{transition:box-shadow .3s}.nv.sd{box-shadow:0 4px 20px rgba(20,22,58,.08)}.nv nav a{position:relative}.nv nav a:after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--b);transition:width .3s}.nv nav a:hover:after,.nv nav a.on:after{width:100%}
+input,select,textarea{transition:border-color .2s,box-shadow .2s}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--b);box-shadow:0 0 0 3px rgba(61,90,241,.15)}
+.ar form>*{animation:fu .5s both}
+.faq details p{animation:fu .35s both}.faq summary{transition:color .2s}
+/* reviews */
+.sa b{display:inline-block;font-weight:400;opacity:0;animation:pop .45s cubic-bezier(.3,1.6,.5,1) both}.rv:not(.in) .sa b{animation-play-state:paused}
+.tt>:not(.avc){animation:fu .6s both}.avc{width:56px;height:56px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font:600 1.1rem Poppins,sans-serif;margin:0 auto 14px;animation:pop .5s both}
+.pgb{height:3px;background:var(--l);max-width:200px;margin:20px auto 0;border-radius:2px;overflow:hidden}.pgb i{display:block;height:100%;background:var(--b);animation:pg 5.5s linear both}
+.mq{overflow:hidden;direction:ltr;padding:8px 0;margin-bottom:4px}.mt{display:flex;width:max-content;animation:mq 45s linear infinite}.mt.rv2{animation-direction:reverse}.mq:hover .mt{animation-play-state:paused}
+.rc{flex:0 0 320px;margin-inline-end:16px;background:#fff;box-shadow:var(--sh);border-radius:10px;padding:18px;font-size:.9rem;direction:ltr;text-align:left}.rc p{margin-top:8px;color:var(--m)}.rh{display:flex;gap:10px;align-items:center;margin-bottom:8px}.rh small{display:block;color:var(--m);font-size:.78rem}
+.avc2{width:38px;height:38px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font:600 .8rem Poppins,sans-serif}#prv .rc{flex:none;margin:0}
+/* auth art */
+.al{position:relative;overflow:hidden;background:linear-gradient(rgba(61,90,241,.88),rgba(20,22,58,.94)),url(img/auth.jpg) center/cover,var(--b)}.al>*:not(.bl1):not(.bl2){position:relative;z-index:1}
+.bl1,.bl2{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;animation:bl 12s ease-in-out infinite alternate}.bl1{width:240px;height:240px;background:#8fa2ff;top:-60px;right:-60px}.bl2{width:200px;height:200px;background:#E8552D;bottom:-40px;left:-60px;opacity:.35;animation-delay:-5s}
+.orb{height:250px;width:250px;margin:0 auto 8px}.ring{position:absolute;inset:20px;border:2px dashed rgba(255,255,255,.4);border-radius:50%;animation:spin 30s linear infinite}
+.core{position:absolute;top:50%;left:50%;width:84px;height:84px;margin:-42px;border-radius:50%;background:#fff;color:var(--b);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.15);animation:pl 3s ease-in-out infinite}.core .i{width:38px;height:38px}
+.ob{position:absolute;top:50%;left:50%;width:42px;height:42px;margin:-21px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);display:grid;place-items:center;animation:orb 16s linear infinite}
+.al ul{margin-top:8px}.fr{margin-top:auto;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);border-radius:10px;padding:16px;font-size:.88rem}.fr p{margin:6px 0}.fr small{opacity:.7}.fx{animation:fu .6s both}
+/* misc */
+.ts{position:fixed;bottom:28px;left:50%;transform:translate(-50%,30px);background:var(--d);color:#fff;padding:12px 24px;border-radius:30px;opacity:0;transition:.4s;z-index:99;box-shadow:var(--sh)}.ts.on{opacity:1;transform:translate(-50%,0)}
+.up{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border:0;border-radius:50%;background:var(--b);color:#fff;font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s;z-index:30}.up.on{opacity:1;pointer-events:auto;transform:none}
+.bm{display:none;width:38px;height:38px;border:0;border-radius:6px;background:var(--g);font-size:1.2rem;cursor:pointer}
+@media(max-width:900px){.bm{display:grid;place-items:center}.mn .nv nav{display:flex;position:absolute;top:84px;left:0;right:0;background:#fff;flex-direction:column;gap:0;padding:8px 24px 16px;box-shadow:var(--sh);animation:fu .3s both}.mn .nv nav a{padding:12px 0;border-bottom:1px solid var(--l)}.orb{transform:scale(.8);margin-top:-20px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.sa b{opacity:1}}
