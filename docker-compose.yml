@@ -1,0 +1,26 @@
+# Local MySQL for development. The API itself runs with `dotnet run` (see README).
+services:
+  db:
+    image: mysql:8.4
+    container_name: handyconnect-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_dev_password
+      MYSQL_DATABASE: handyconnect
+      MYSQL_USER: handy
+      MYSQL_PASSWORD: handy_dev_password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./database/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/02-reference-data.sql:/docker-entrypoint-initdb.d/02-reference-data.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_dev_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:
