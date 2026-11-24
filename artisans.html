@@ -1,4 +1,50 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Artisans — HandyConnect</title><meta name="theme-color" content="#3D5AF1"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="style.css"></head><body><div id="hd"></div>
-<main class="w"><div class="hc"><div><h1 data-ar="اكتشف <span>حرفيينا</span> واعمل مع الأفضل">Découvrez <span>nos artisans</span> et trouvez le meilleur</h1><p data-ar="مجاني للحرفاء، اتصال مباشر.">Gratuit pour les clients, contact direct par téléphone.</p></div><div class="hv"><div class="cr"><span data-ic="zap"></span></div><div class="fc"><b>Sami Trabelsi</b><br><span class="sr">★★★★★</span><br><small>Électricien · Sfax</small></div></div></div>
-<div class="lay"><aside id="fl"></aside><div><form class="tb" id="sf"><input id="k" placeholder="Mot-clé…"><select class="jv" id="kv"></select><button class="bf" data-ar="بحث">Rechercher</button></form><p class="mu" id="cnt" style="margin-bottom:16px"></p><div class="g3" id="res"></div></div></div></main>
-<section class="bn" data-cta></section><section class="nl" data-nl></section><div id="ft"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Artisans — HandyConnect</title>
+    <meta name="theme-color" content="#3D5AF1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="img/logo.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="hd"></div>
+    <main class="w">
+        <div class="hc">
+            <div>
+                <h1 data-ar="اكتشف <span>حرفيينا</span> واعمل مع الأفضل">Découvrez <span>nos artisans</span> et trouvez
+                    le meilleur</h1>
+                <p data-ar="مجاني للحرفاء، اتصال مباشر.">Gratuit pour les clients, contact direct par téléphone.</p>
+            </div>
+            <div class="hv">
+                <div class="cr"><span data-ic="zap"></span></div>
+                <div class="fc"><b>Sami Trabelsi</b><br><span class="sr">★★★★★</span><br><small>Électricien ·
+                        Sfax</small></div>
+            </div>
+        </div>
+        <div class="lay">
+            <aside id="fl"></aside>
+            <div>
+                <form class="tb" id="sf" action="artisans.html" method="get" data-form="filter"><input id="k" name="k"
+                        aria-label="Mot-clé" placeholder="Mot-clé…" maxlength="60"><select class="jv" id="kv" name="v"
+                        aria-label="Gouvernorat"></select><button class="bf" data-ar="بحث">Rechercher</button></form>
+                <p class="mu" id="cnt" style="margin-bottom:16px"></p>
+                <div class="g3" id="res"></div>
+            </div>
+        </div>
+    </main>
+    <section class="bn" data-cta></section>
+    <section class="nl" data-nl></section>
+    <div id="ft"></div>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+
+</html>

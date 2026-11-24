@@ -1,2 +1,49 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connexion — HandyConnect</title><meta name="theme-color" content="#3D5AF1"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="style.css"></head><body><div id="hd"></div>
-<main class="w"><div class="au"><div class="al"><h2>Bon retour</h2><p>Connectez-vous pour voir les numéros et laisser un avis.</p><ul><li>✓ Gratuit pour les clients</li><li>✓ Avis liés aux interventions</li><li>✓ Contact par téléphone</li></ul></div><div class="ar"><form onsubmit="event.preventDefault();location='index.html'"><h1 data-ar="دخول">Connexion</h1><label>Email ou téléphone</label><input required><label>Mot de passe</label><div class="pw"><input type="password" minlength="6" required><button type="button" class="pe" data-ic="eye"></button></div><button class="bf">Se connecter</button><p class="alt">Pas de compte ? <a href="signup.html">Inscription</a></p></form></div></div></main><div id="ft"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Connexion — HandyConnect</title>
+    <meta name="theme-color" content="#3D5AF1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="img/logo.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="hd"></div>
+    <main class="w">
+        <div class="au">
+            <div class="al">
+                <h2>Bon retour</h2>
+                <p>Connectez-vous pour voir les numéros et laisser un avis.</p>
+                <ul>
+                    <li>✓ Gratuit pour les clients</li>
+                    <li>✓ Avis liés aux interventions</li>
+                    <li>✓ Contact par téléphone</li>
+                </ul>
+            </div>
+            <div class="ar">
+                <form action="api/signin" method="post" data-form="signin">
+                    <h1 data-ar="دخول">Connexion</h1><label for="si-l">Email ou téléphone</label><input id="si-l"
+                        name="login" required maxlength="80" autocomplete="username"
+                        pattern="[^\s@]+@[^\s@]+\.[^\s@]+|(\+216[ ]?)?[2-579]\d[ ]?\d{3}[ ]?\d{3}"
+                        title="Email valide ou numéro tunisien à 8 chiffres"><label for="si-p">Mot de passe</label>
+                    <div class="pw"><input id="si-p" name="password" type="password" minlength="6" maxlength="64"
+                            required autocomplete="current-password"><button type="button" class="pe" data-ic="eye"
+                            aria-label="Afficher"></button></div><button class="bf">Se connecter</button>
+                    <p class="alt">Pas de compte ? <a href="signup.html">Inscription</a></p>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div id="ft"></div>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+
+</html>

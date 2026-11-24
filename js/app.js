@@ -1,0 +1,86 @@
+/* APP: rendering, language, pages. Data lives in data.js, forms in forms.js */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let LG='fr';try{LG=localStorage.lg||'fr'}catch(e){}
+const L=(f,a)=>LG=='ar'?a:f;
+const ic=(n,c='i')=>`<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${IP[n]}"/></svg>`;
+const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const U=()=>{try{return localStorage.hcu||''}catch(e){return''}};
+const IMG=(k,l,w=500,h=350)=>`https://loremflickr.com/${w}/${h}/${k}?lock=${l}`;
+const pim=(u,c='')=>`<img class="${c}" src="${u}" alt="" loading="lazy" onerror="this.remove()">`;
+const PH=p=>`https://randomuser.me/api/portraits/${p.id==3?'women/19':'men/'+(p.id*3+10)}.jpg`;
+const PI=p=>`<img src="${PH(p)}" alt="" loading="lazy" onerror="this.onerror=function(){this.remove()};this.src='img/${p.id}.jpg'">`;
+const RK=id=>{try{return JSON.parse(localStorage['rv'+id]||'[]')}catch(e){return[]}};
+P.forEach(p=>{const l=RK(p.id);if(l.length){const t=p.r*p.a+l.reduce((x,r)=>x+r[2],0);p.a+=l.length;p.r=Math.round(t/p.a*10)/10}});
+const cj=j=>C.find(x=>x[0]==j),jn=j=>L(cj(j)[0],cj(j)[1]);
+const stars=r=>`<span class="sr">${'★'.repeat(Math.round(r))}<i>${'★'.repeat(5-Math.round(r))}</i></span>`;
+const go=id=>location='profile.html?id='+id;
+const card=p=>`<article class="card" onclick="go(${p.id})"><div class="av c${p.id%4}">${ic(cj(p.j)[2])}${PI(p)}<span>${p.n.split(' ').map(w=>w[0]).join('')}</span></div><div class="cb"><h3>${p.n}</h3><p class="mu">${jn(p.j)}</p><p class="rt">${stars(p.r)} <b>${p.r}</b> <span class="mu">(${p.a} ${L('avis','تقييم')})</span></p><p class="lc">${ic('pin')} ${p.v}</p><div class="rr"><div>${L('Expérience','الخبرة')}<span class="tag">${p.x} ${L('ans','سنوات')}</span></div><div>${L('Satisfaction','الرضا')}<span class="sat">${Math.round(p.r*20)}%</span></div></div></div></article>`;
+const N=[['index.html','Accueil','الرئيسية'],['artisans.html','Artisans','الحرفيون'],['about.html','À propos','من نحن'],['contact.html','Contact','اتصل بنا'],['support.html','Support','الدعم']];
+const cur=location.pathname.split('/').pop()||'index.html';
+const HD=()=>`<header class="nv"><div class="w ni"><a class="logo" href="index.html"><img class="lg" src="img/logo.svg" alt="">HandyConnect</a><nav>${N.map(n=>`<a href="${n[0]}" class="${cur==n[0]?'on':''}">${L(n[1],n[2])}</a>`).join('')}</nav><div class="nr"><button class="lgb" onclick="setL(LG=='ar'?'fr':'ar')" aria-label="Langue">${LG=='ar'?'FR':'ع'}</button>${U()?`<a class="bo" href="#" onclick="try{delete localStorage.hcu}catch(e){};location.reload()">${L('Déconnexion','خروج')}</a>`:`<a class="bo" href="signin.html">${L('Connexion','دخول')}</a>`}<a class="bf" href="signup.html">${L('Inscription','انضم')}</a><button class="bm" aria-label="Menu" onclick="document.body.classList.toggle('mn')">☰</button></div></div></header>`;
+const FT=()=>`<footer><div class="w"><div class="fg"><div><a class="logo" href="index.html"><img class="lg" src="img/logo-white.svg" alt="">HandyConnect</a><p>${L('La plateforme tunisienne qui relie clients et artisans : plombiers, électriciens, maçons, mécaniciens et plus encore.','المنصة التونسية التي تربط الحرفاء بالحرفيين: سباكون، كهربائيون، بنّاؤون، ميكانيكيون والمزيد.')}</p><div class="sc"><span>f</span><span>▶</span><span>in</span><span>t</span><span>◎</span></div></div><div><h4>${L('Liens rapides','روابط سريعة')}</h4>${N.map(n=>`<a href="${n[0]}">${L(n[1],n[2])}</a>`).join('')}</div><div><h4>${L('Ressources','موارد')}</h4><a href="support.html#faq">FAQ</a><a href="support.html">${L('Centre d’aide','مركز المساعدة')}</a><a href="signup.html?r=a">${L('Devenir artisan','كن حرفيا')}</a><a href="contact.html">${L('Nous contacter','اتصل بنا')}</a></div><div><h4>${L('Conditions','الشروط')}</h4><a href="#">${L('Confidentialité','الخصوصية')}</a><a href="#">${L('Conditions d’utilisation','شروط الاستخدام')}</a><a href="#">${L('Code de conduite','مدونة السلوك')}</a></div></div><div class="fb">HandyConnect — © 2026 · contact@handyconnect.tn</div></div></footer>`;
+const CTA=()=>`<div><h2>${L('Rejoignez la communauté <span>HandyConnect</span> et trouvez ou proposez des services de qualité !','انضم إلى مجتمع <span>HandyConnect</span> وابحث عن خدمات ذات جودة أو قدّمها!')}</h2><a class="bf" href="signup.html">${L('Rejoindre','انضم الآن')}</a></div>`;
+const F={m:new Set(),v:'',r:0,x:0,k:''};
+function fill(){$$('select.jm').forEach(s=>{const v=s.value;s.innerHTML=`<option value="">${s.dataset.pick!=null?L('Choisir…','اختر…'):L('Tous les métiers','كل المهن')}</option>`+C.map(c=>`<option value="${c[0]}">${L(c[0],c[1])}</option>`).join('');s.value=v});$$('select.jv').forEach(s=>{const v=s.value;s.innerHTML=`<option value="">${s.dataset.pick!=null?L('Choisir…','اختر…'):L('Toute la Tunisie','كل تونس')}</option>`+G.map(g=>`<option>${g}</option>`).join('');s.value=v})}
+function list(){const k=F.k.toLowerCase();return P.filter(p=>(!F.m.size||F.m.has(p.j))&&(!F.v||p.v==F.v)&&p.r>=F.r&&p.x>=F.x&&(!k||(p.n+p.j+p.s+p.b).toLowerCase().includes(k))).sort((a,b)=>b.r-a.r)}
+const tm=m=>{F.m.has(m)?F.m.delete(m):F.m.add(m);R()},sx=(k,v)=>{F[k]=v;R()};
+const rad=(k,o)=>o.map(([v,t])=>`<label><input type="radio" name="${k}" ${F[k]==v?'checked':''} onchange="sx('${k}',${v})">${t}</label>`).join('');
+function page(){
+ if($('#cats'))$('#cats').innerHTML=C.map(c=>`<div class="cc" onclick="location='artisans.html?m=${c[0]}'">${ic(c[2])}<h3>${L(c[0],c[1])}</h3><p>${P.filter(p=>p.j==c[0]).length} ${L('artisans disponibles','حرفيين متاحين')}</p></div>`).join('');
+ if($('#feat'))$('#feat').innerHTML=[...P].sort((a,b)=>b.r-a.r).slice(0,8).map(card).join('');
+ if($('#res')){const r=list();
+  $('#fl').innerHTML=`<div class="gp"><h4>${L('Métier','المهنة')}</h4>${C.map(c=>`<label><input type="checkbox" ${F.m.has(c[0])?'checked':''} onchange="tm('${c[0]}')">${L(c[0],c[1])}<span>(${P.filter(p=>p.j==c[0]).length})</span></label>`).join('')}</div><div class="gp"><h4>${L('Note minimale','التقييم الأدنى')}</h4>${rad('r',[[0,L('Toutes','الكل')],[4.5,'4,5 ★ +'],[4.8,'4,8 ★ +']])}</div><div class="gp"><h4>${L('Expérience','الخبرة')}</h4>${rad('x',[[0,L('Toutes','الكل')],[5,'5+ '+L('ans','سنوات')],[10,'10+ '+L('ans','سنوات')]])}</div>`;
+  $('#res').innerHTML=r.length?r.map(card).join(''):`<p class="empty">${L('Aucun artisan pour ce filtre.','لا يوجد حرفيون.')}</p>`;$('#cnt').textContent=r.length+' '+L('artisan(s)','حرفي')}
+ if($('#pf')){const p=P.find(x=>x.id==new URLSearchParams(location.search).get('id'))||P[0],c=cj(p.j)[2];
+  $('#pf').innerHTML=`<div class="cv" style="background-image:url(${IMG(CK[p.j],p.id,1200,300)})"></div><div class="pt"><div><div class="pa">${ic(c)}${PI(p)}</div><div class="pb"><a class="bo" href="signin.html">${L('Suivre','متابعة')}</a><a class="bf" href="signin.html">${ic('phone')} ${L('Appeler','اتصال')}</a></div></div><div class="pi"><h2>${p.n}</h2>${stars(p.r)} <small>${p.r}/5 · ${p.a} ${L('avis','تقييم')}</small><dl><div><dt>${L('Métier','المهنة')} :</dt> <dd>${jn(p.j)}</dd></div><div><dt>${L('Gouvernorat','الولاية')} :</dt> <dd>${p.v}</dd></div><div><dt>${L('Zone','المنطقة')} :</dt> <dd>${p.z}</dd></div><div><dt>${L('Expérience','الخبرة')} :</dt> <dd>${p.x} ${L('ans','سنوات')}</dd></div><div><dt>${L('Réponse moyenne','وقت الرد')} :</dt> <dd>1 ${L('heure','ساعة')}</dd></div><div><dt>${L('Membre depuis','عضو منذ')} :</dt> <dd>${2020+p.id%4}</dd></div><div><dt>${L('Langues','اللغات')} :</dt> <dd>Arabe, Français</dd></div><div><dt>${L('Satisfaction','الرضا')} :</dt> <dd>${Math.round(p.r*20)}%</dd></div></dl><p>${p.b} ${L('Contactez-le directement par téléphone ; le tarif est fixé avec lui avant les travaux.','تواصل معه مباشرة هاتفيا؛ يتم الاتفاق على السعر قبل الأشغال.')}</p></div></div>`;
+  $('#sv').innerHTML=p.s.map((s,i)=>`<article class="card"><div class="av c${(i+p.id)%4}">${ic(c)}${pim(IMG(CK[p.j],p.id*10+i))}</div><div class="cb"><p class="mu">${jn(p.j)}</p><h3>${s}</h3><p class="rt">${stars(p.r)} <small>${p.r}/5</small></p><span class="tag">${L('Sur devis','حسب الطلب')}</span></div></article>`).join('');
+  $('#rel').innerHTML=P.filter(x=>x.id!=p.id).sort((a,b)=>(b.j==p.j)-(a.j==p.j)||b.r-a.r).slice(0,4).map(card).join('')}
+ if($('#vis'))$('#vis').innerHTML=['Notre vision est de rendre chaque artisan tunisien visible et chaque client serein.','Nous voulons un pays où trouver un professionnel fiable prend quelques minutes, dans les 24 gouvernorats.','Notre objectif : une économie locale où artisans et clients réussissent grâce à la confiance.'].map((t,i)=>`<div class="nc"><span class="nm">0${i+1}</span><p>${t}</p></div>`).join('');
+ if($('#mis'))$('#mis').innerHTML=['Offrir une plateforme fiable pour que clients et artisans se contactent directement.','Faciliter la recherche du bon artisan et la visibilité des professionnels qualifiés.','Promouvoir l’emploi local, l’inclusion et des opportunités pour tous les métiers.'].map((t,i)=>`<div class="nc"><span class="nm">0${i+1}</span><p>${t}</p></div>`).join('');
+ if($('#val'))$('#val').innerHTML=VAL.map(v=>`<div class="cc"><div class="vc">${pim(IMG(VK[v[0]],v[1].length,120,120))}</div><h3>${v[1]}</h3><p>${v[2]}</p></div>`).join('');
+ if($('#mil'))$('#mil').innerHTML=['Lancement de la plateforme avec les premiers artisans de Tunis.','Extension aux 24 gouvernorats de Tunisie.','Mise en place des avis liés aux interventions réelles.','Plus de 1 000 artisans inscrits et vérifiés.','Lancement de l’interface en arabe et en français.','Partenariats avec des associations de formation professionnelle.','Moderation renforcée des avis par l’administration.','Nouveaux métiers : climatisation, serrurerie, menuiserie.'].map((t,i)=>`<div class="nc"><span class="nm">0${i+1}</span><p>${t}</p></div>`).join('');
+ if($('#top'))$('#top').innerHTML=TOP.map(t=>`<div class="cc">${pim(IMG(TK[t[0]],t[1].length,400,250),'ph')}<h3>${L(t[1],t[2])}</h3><p>${t[3]}</p></div>`).join('');
+ if($('#st'))$('#st').innerHTML=TOP.map(t=>`<option>${L(t[1],t[2])}</option>`).join('');
+ if($('#of')){window.sel=window.sel||0;$('#of').innerHTML=OF.map((o,i)=>`<div class="of ${i==sel?'on':''}" onclick="sel=${i};page()"><div class="th">${ic('pin')}</div><div><small>${o[0]}</small><br><b>${o[1]}</b></div></div>`).join('');$('#mp').innerHTML=OF.map((o,i)=>`<span style="position:absolute;left:${o[2]}%;top:${o[3]}%;${i==sel?'color:#E8552D':''}">${ic('pin')}</span>`).join('')}
+}
+function R(){document.documentElement.lang=LG;document.documentElement.dir=LG=='ar'?'rtl':'ltr';
+ $('#hd').innerHTML=HD();$('#ft').innerHTML=FT();$$('[data-nl]').forEach(e=>e.innerHTML=NL());$$('[data-cta]').forEach(e=>e.innerHTML=CTA());
+ $$('[data-ar]').forEach(e=>{if(!e.dataset.fr)e.dataset.fr=e.innerHTML;e.innerHTML=LG=='ar'?e.dataset.ar:e.dataset.fr});
+ $$('[data-ic]').forEach(e=>{const n=e.dataset.ic;e.innerHTML=ic(n)+(e.closest('.cr,.vi')&&HI[n]?pim(IMG(HI[n],n.length+7,700,500),'fi'):'')});fill();page();page2();rv();art()}
+function setL(l){LG=l;try{localStorage.lg=l}catch(e){}R()}
+document.addEventListener('DOMContentLoaded',()=>{
+ const q=new URLSearchParams(location.search);if(q.get('m'))F.m.add(q.get('m'));F.v=q.get('v')||'';
+ R();if($('#kv')){$('#kv').value=F.v}
+});
+const SV=()=>P.flatMap(p=>p.s.map((s,i)=>({p,s,k:p.id*10+i}))).sort((a,b)=>b.p.r-a.p.r||a.k-b.k);
+const pr=k=>30+(k*7%12)*5;
+const scard=o=>`<article class="card" onclick="go(${o.p.id})"><div class="av c${o.k%4}">${ic(cj(o.p.j)[2])}${pim(IMG(CK[o.p.j],o.k))}</div><div class="cb"><p class="mu">${jn(o.p.j)}</p><h3>${o.s} — ${o.p.v}</h3><p class="rt">${stars(o.p.r)} <small>${o.p.r}</small></p><p class="mu">${o.p.n}</p><div class="rr"><span class="tag" style="background:var(--d)">${L('Dès','من')} ${pr(o.k)} DT</span></div></div></article>`;
+let ti=0;const tn=d=>{ti=(ti+d+3)%3;tt()};
+function page2(){
+ if($('#prv')){const p=P.find(x=>x.id==new URLSearchParams(location.search).get('id'))||P[0];const l=RK(p.id).slice().reverse().slice(0,6).map(r=>rcard(r,1)),f=[0,1,2].slice(Math.min(l.length,3)).map(i=>rcard(REV[(p.id+i)%REV.length],1));$('#prv').innerHTML=l.concat(f).join('');$('#rvf')&&rform(p)}
+ if($('#mq')){const a=REV.slice(0,5),b=[...REV.slice(3),...REV.slice(0,3)],row=(x,c)=>`<div class="mq"><div class="mt ${c}">${[...x,...x].map(r=>rcard(r)).join('')}</div></div>`;$('#mq').innerHTML=row(a,'')+row(b,'rv2')}
+ if(!$('#pop'))return;
+ $('#pop').innerHTML=SV().slice(0,8).map(scard).join('');
+ $('#lik').innerHTML=SV().filter((_,i)=>i%3==1).slice(0,8).map(scard).join('');
+ $('#tl').innerHTML=C.map((c,i)=>`<div class="tile ${i==1?'on':''}" onclick="location='artisans.html?m=${c[0]}'">${pim(IMG(CK[c[0]],i+100,300,200),'ti')}<b>${L(c[0],c[1])}</b><small>${P.filter(p=>p.j==c[0]).length} ${L('artisans','حرفيين')}</small></div>`).join('');
+ $('#f6').innerHTML=[['user','Profils d’artisans','Spécialités, zone d’intervention et expérience en un coup d’œil.'],['check','Avis vérifiés','Chaque avis est lié à une intervention réelle.'],['phone','Contact direct','Appelez l’artisan sans intermédiaire ni commission.'],['pin','24 gouvernorats','Trouvez un professionnel près de chez vous.'],['wallet','Prix avant travaux','Convenez du tarif avec l’artisan avant de commencer.'],['chat','Support réactif','Une équipe disponible pour vous aider.']].map(f=>`<div class="nc">${pim(IMG(FK[f[0]],f[1].length,120,120),'ph2')}<div><h3>${f[1]}</h3><p>${f[2]}</p></div></div>`).join('');
+ $('#rs').innerHTML=[...P].sort((a,b)=>b.r-a.r).slice(0,8).map(card).join('');
+ $('#pj').innerHTML=P.slice(0,8).map((p,i)=>`<div class="pc"><span class="mu">${jn(p.j)} · ${p.v}</span><h3 style="font-size:1rem">${L('Besoin','مطلوب')} : ${p.s[0]}</h3><span class="tag">${pr(p.id)}–${pr(p.id)+60} DT</span><span class="mu">${CL[i]} · ${L('il y a','منذ')} ${i+1} ${L('j','أيام')}</span></div>`).join('');
+ tt();
+ $('#bl').innerHTML=BL.map((b,i)=>`<article class="card bl"><div class="av c${i}">${ic('book')}${pim(IMG(['plumbing','electricity','bathroom'][i],i+200))}</div><div class="cb"><p class="mu">${b[1]}</p><h3>${b[0]}</h3><p class="mu" style="margin-top:8px">${b[2]}</p></div></article>`).join('');
+ $('#fq').innerHTML=FQ.map((f,i)=>`<details ${i?'':'open'}><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('');
+}
+const sa=(r,d=.1)=>`<span class="sr sa">${[1,2,3,4,5].map(i=>`<b style="animation-delay:${i*d}s${i>r?';color:#D1D5DB':''}">★</b>`).join('')}</span>`;
+const rcard=(r,a)=>`<div class="rc"><div class="rh"><span class="avc2">${r[0].split(' ').map(w=>w[0]).join('')}</span><div><b>${r[0]}</b><small>${r[1]}</small></div></div>${a?sa(r[2],.12):stars(r[2])}<p>${r[3]}</p></div>`;
+function tt(){const e=$('#tt');if(!e)return;const t=TT[ti];e.innerHTML=`<div class="avc">${t[0].split(' ').map(w=>w[0]).join('')}</div>${sa(5)}<p>“${L(t[2],t[3])}”</p><h3>${t[0]}</h3><span class="mu">${t[1]}</span><div class="pgb"><i></i></div>`;$('#tc').textContent='0'+(ti+1)}
+setInterval(()=>{if($('#tt'))tn(1)},5500);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(()=>t.style.transitionDelay='',900);if(t.matches('.stt>div'))cu(t.querySelector('b'))}}),{threshold:.12});
+function rv(){$$('.st,.card,.cc,.tile,.nc,.pc,.plan,.bb,.fm,.dk,.vp,.vi,.stt>div,#prv .rc,.faq details,.mq').forEach((e,i)=>{if(e.dataset.rv)return;e.dataset.rv=1;e.classList.add('rv');e.style.transitionDelay=(i%4)*70+'ms';io.observe(e)})}
+function cu(b){const m=b.textContent.match(/^([\d.,]+)(.*)$/);if(!m)return;const n=parseFloat(m[1].replace(',','.')),d=m[1].includes(',')?1:0,t0=performance.now();(function f(t){const k=Math.min((t-t0)/1100,1),v=n*(1-Math.pow(1-k,3));b.textContent=v.toFixed(d).replace('.',',')+m[2];k<1&&requestAnimationFrame(f)})(t0)}
+const ART=()=>`<div class="bl1"></div><div class="bl2"></div><div class="orb"><div class="ring"></div><div class="core">${ic('wrench')}</div>${['zap','brush','layers','key','snow'].map((n,i)=>`<span class="ob" style="--a:${i*72}deg">${ic(n)}</span>`).join('')}</div>`;
+let fi=0;function fr(){const e=$('#fr');if(!e)return;const r=REV[fi%REV.length];e.innerHTML=`${stars(r[2])}<p>“${r[3]}”</p><b>${r[0]}</b> <small>${r[1]}</small>`;e.classList.remove('fx');void e.offsetWidth;e.classList.add('fx')}
+setInterval(()=>{fi++;fr()},4500);
+function art(){$$('.al').forEach(a=>{if(a.dataset.a)return;a.dataset.a=1;a.insertAdjacentHTML('afterbegin',ART());a.insertAdjacentHTML('beforeend','<div class="fr" id="fr"></div>')});fr();$$('.ar form>*').forEach((e,i)=>e.style.animationDelay=i*.05+'s')}
+function toast(m){const t=document.createElement('div');t.className='ts';t.textContent=m||L('Merci ! Message envoyé ✓','شكرا! تم الإرسال ✓');document.body.appendChild(t);setTimeout(()=>t.classList.add('on'),10);setTimeout(()=>{t.classList.remove('on');setTimeout(()=>t.remove(),400)},2800)}
+document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHTML('beforeend','<button class="up" id="up" aria-label="Haut" onclick="scrollTo({top:0,behavior:\'smooth\'})">↑</button>');const sc=()=>{$('#up').classList.toggle('on',scrollY>600);$('.nv')&&$('.nv').classList.toggle('sd',scrollY>10)};addEventListener('scroll',sc,{passive:true});sc()});
+

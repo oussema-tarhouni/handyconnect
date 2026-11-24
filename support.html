@@ -1,6 +1,81 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Support — HandyConnect</title><meta name="theme-color" content="#3D5AF1"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="style.css"></head><body><div id="hd"></div>
-<main class="w"><div class="hc"><div><h1 data-ar="مساعدة <span>ودعم</span>">Aide et <span>support</span></h1><p data-ar="فريقنا جاهز لمساعدتك.">Notre équipe est là pour vous aider à profiter au mieux de la plateforme.</p><form class="srch" onsubmit="event.preventDefault();location='#faq'"><input placeholder="Rechercher une aide…"><button class="bf">Rechercher</button></form></div><div class="hv"><div class="cr"><span data-ic="shield"></span></div><div class="fc"><b>Sécurisé</b><br><span class="sr">★★★★★</span><br><small>Simple à utiliser</small></div></div></div>
-<section class="sec"><h2 class="st" data-ar="اختر <span>الموضوع</span>">Choisissez un <span>sujet</span></h2><div class="g4" id="top"></div></section>
-<section class="sec bg" id="faq" style="padding:56px 24px;border-radius:12px"><h2 class="st">Questions <span>fréquentes</span></h2><div class="faq" style="max-width:800px;margin:auto"><details><summary>Est-ce gratuit ?</summary><p>Oui, 100 % gratuit pour les clients. Seuls les artisans souscrivent un abonnement.</p></details><details><summary>Pourquoi un artisan disparaît-il de la recherche ?</summary><p>Son profil est masqué quand son abonnement expire.</p></details><details><summary>Comment laisser un avis ?</summary><p>Après une intervention, notez de 1 à 5 étoiles ; l’avis est modéré par l’administration.</p></details><details><summary>Peut-on payer en ligne ?</summary><p>Non, le paiement se règle directement avec l’artisan.</p></details></div></section>
-<section class="sec"><div class="sp"><div class="vi"><span data-ic="chat"></span></div><form class="fm" onsubmit="event.preventDefault();this.reset();toast()"><h2 data-ar="نموذج <span>الدعم</span>">Formulaire de <span>support</span></h2><label>Nom <em>*</em></label><input required><label>Email <em>*</em></label><input type="email" required><label>Sujet <em>*</em></label><select id="st"></select><label>Message <em>*</em></label><textarea required></textarea><button class="bf">Envoyer</button></form></div></section></main>
-<section class="nl" data-nl></section><div id="ft"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Support — HandyConnect</title>
+    <meta name="theme-color" content="#3D5AF1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="img/logo.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="hd"></div>
+    <main class="w">
+        <div class="hc">
+            <div>
+                <h1 data-ar="مساعدة <span>ودعم</span>">Aide et <span>support</span></h1>
+                <p data-ar="فريقنا جاهز لمساعدتك.">Notre équipe est là pour vous aider à profiter au mieux de la
+                    plateforme.</p>
+                <form class="srch" action="#faq" method="get" data-form="help"><input name="q"
+                        aria-label="Rechercher une aide" placeholder="Rechercher une aide…" required
+                        maxlength="80"><button class="bf">Rechercher</button></form>
+            </div>
+            <div class="hv">
+                <div class="cr"><span data-ic="shield"></span></div>
+                <div class="fc"><b>Sécurisé</b><br><span class="sr">★★★★★</span><br><small>Simple à utiliser</small>
+                </div>
+            </div>
+        </div>
+        <section class="sec">
+            <h2 class="st" data-ar="اختر <span>الموضوع</span>">Choisissez un <span>sujet</span></h2>
+            <div class="g4" id="top"></div>
+        </section>
+        <section class="sec bg" id="faq" style="padding:56px 24px;border-radius:12px">
+            <h2 class="st">Questions <span>fréquentes</span></h2>
+            <div class="faq" style="max-width:800px;margin:auto">
+                <details>
+                    <summary>Est-ce gratuit ?</summary>
+                    <p>Oui, 100 % gratuit pour les clients. Seuls les artisans souscrivent un abonnement.</p>
+                </details>
+                <details>
+                    <summary>Pourquoi un artisan disparaît-il de la recherche ?</summary>
+                    <p>Son profil est masqué quand son abonnement expire.</p>
+                </details>
+                <details>
+                    <summary>Comment laisser un avis ?</summary>
+                    <p>Après une intervention, notez de 1 à 5 étoiles ; l’avis est modéré par l’administration.</p>
+                </details>
+                <details>
+                    <summary>Peut-on payer en ligne ?</summary>
+                    <p>Non, le paiement se règle directement avec l’artisan.</p>
+                </details>
+            </div>
+        </section>
+        <section class="sec">
+            <div class="sp">
+                <div class="vi"><span data-ic="chat"></span></div>
+                <form class="fm" action="api/support" method="post" data-form="support">
+                    <h2 data-ar="نموذج <span>الدعم</span>">Formulaire de <span>support</span></h2><label for="sp-n">Nom
+                        <em>*</em></label><input id="sp-n" name="name" required minlength="2" maxlength="60"
+                        autocomplete="name"><label for="sp-e">Email <em>*</em></label><input id="sp-e" name="email"
+                        type="email" required maxlength="80" autocomplete="email"><label for="sp-s">Sujet
+                        <em>*</em></label><select id="sp-s" name="subject" required></select><label for="sp-m">Message
+                        <em>*</em></label><textarea id="sp-m" name="message" required minlength="10"
+                        maxlength="1000"></textarea><button class="bf">Envoyer</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <section class="nl" data-nl></section>
+    <div id="ft"></div>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+
+</html>
